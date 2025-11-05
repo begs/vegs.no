@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  /* Tokyo Night Color Palette */
+  --tn-bg-primary: #1a1b26;
+  --tn-bg-secondary: #24283b;
+  --tn-bg-tertiary: #414868;
+  --tn-text-primary: #c0caf5;
+  --tn-text-secondary: #a9b1d6;
+  --tn-text-muted: #565f89;
+  --tn-accent-blue: #7aa2f7;
+  --tn-accent-purple: #bb9af7;
+  --tn-accent-teal: #73daca;
+  --tn-accent-green: #9ece6a;
+  --tn-accent-yellow: #e0af68;
+  --tn-accent-orange: #ff9e64;
+  --tn-accent-red: #f7768e;
+  --tn-accent-magenta: #bb9af7;
+}
+
+@theme inline {
+  --color-background: var(--tn-bg-primary);
+  --color-foreground: var(--tn-text-primary);
+  --color-secondary: var(--tn-bg-secondary);
+  --color-tertiary: var(--tn-bg-tertiary);
+  --color-muted: var(--tn-text-muted);
+  --color-accent: var(--tn-accent-blue);
+  --color-accent-purple: var(--tn-accent-purple);
+  --color-accent-teal: var(--tn-accent-teal);
+  --color-accent-green: var(--tn-accent-green);
+  --color-accent-yellow: var(--tn-accent-yellow);
+  --color-accent-orange: var(--tn-accent-orange);
+  --color-accent-red: var(--tn-accent-red);
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--tn-bg-primary);
+  color: var(--tn-text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar with Tokyo Night theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tn-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tn-bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tn-accent-blue);
+}
