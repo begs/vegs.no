@@ -25,21 +25,18 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Placeholder for future image */}
+          {/* Profile Image */}
           <motion.div 
-            className="w-48 h-48 mx-auto bg-secondary border-2 border-dashed border-tertiary rounded-lg flex items-center justify-center"
+            className="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-accent/20"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="text-center text-muted">
-              <div className="w-12 h-12 mx-auto mb-2 opacity-50">
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                </svg>
-              </div>
-              <p className="text-sm">Photo placeholder</p>
-            </div>
+            <img 
+              src="https://res.cloudinary.com/duov6aybt/image/upload/v1762342711/4784324-6HBJwEVMTODAVhN0_tx4otx.jpg" 
+              alt="Not Vegard"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
 
           {/* Navigation hints */}
