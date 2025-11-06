@@ -1,7 +1,7 @@
 'use client';
 
 import Navigation from "@/components/Navigation";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 
 // Mock keyboard data - replace with real data later
@@ -10,11 +10,11 @@ const mockKeyboards = [
     id: 1,
     name: "Elise",
     category: "Alice",
-    switches: "Crinks",
+    switches: "Crinks (Cream + Ink frankenswitches)",
     keycaps: "keyreative ABS blanks",
     case: "Aluminum",
     plate: "POM",
-    description: "An Alice-inspired keyboard by Mekanisk/Snurrebassen.",
+    description: "A prototype of an Alice-inspired keyboard by Mekanisk/Snurrebassen.",
     image: "https://live.staticflickr.com/65535/50583082332_0360c8d777_b.jpg",
     tags: ["Alice", "mx"]
   },
@@ -100,7 +100,7 @@ const mockKeyboards = [
     plate: "Aluminum",
     description: "Classic TKL by Plywrks.",
     image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
-    tags: ["TKL"]
+    tags: ["TKL", "mx"]
   },
 ];
 
@@ -111,6 +111,30 @@ export default function Keyboards() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedSwitchType, setSelectedSwitchType] = useState("all");
   const [selectedKeyboard, setSelectedKeyboard] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [keyboardImages, setKeyboardImages] = useState<Record<string, any[]>>({});
+  const [loadingImages, setLoadingImages] = useState(true);
+
+  // Fetch keyboard images from Cloudinary
+  useEffect(() => {
+    async function fetchKeyboardImages() {
+      try {
+        setLoadingImages(true);
+        const response = await fetch('/api/keyboards');
+        const data = await response.json();
+        
+        if (data.keyboards) {
+          setKeyboardImages(data.keyboards);
+        }
+      } catch (error) {
+        console.error('Error fetching keyboard images:', error);
+      } finally {
+        setLoadingImages(false);
+      }
+    }
+
+    fetchKeyboardImages();
+  }, []);
 
   const filteredKeyboards = mockKeyboards.filter(keyboard => {
     const categoryMatch = selectedCategory === "all" || keyboard.category === selectedCategory;
@@ -122,6 +146,48 @@ export default function Keyboards() {
   const selectedKeyboardData = selectedKeyboard 
     ? mockKeyboards.find(kb => kb.id === selectedKeyboard)
     : null;
+
+  // Get images for the selected keyboard
+  const selectedKeyboardImages = selectedKeyboardData 
+    ? keyboardImages[selectedKeyboardData.name] || []
+    : [];
+
+  // Reset image index when keyboard changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [selectedKeyboard]);
+
+  // Keyboard navigation for carousel
+  useEffect(() => {
+    if (!selectedKeyboard || selectedKeyboardImages.length === 0) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedKeyboard(null);
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => (prev + 1) % selectedKeyboardImages.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setCurrentImageIndex((prev) => 
+          prev === 0 ? selectedKeyboardImages.length - 1 : prev - 1
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedKeyboard, selectedKeyboardImages.length]);
+
+  const handleNextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % selectedKeyboardImages.length);
+  }, [selectedKeyboardImages.length]);
+
+  const handlePrevImage = useCallback(() => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? selectedKeyboardImages.length - 1 : prev - 1
+    );
+  }, [selectedKeyboardImages.length]);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -258,20 +324,63 @@ export default function Keyboards() {
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
           onClick={() => setSelectedKeyboard(null)}
         >
-          <div className="relative max-w-2xl w-full bg-secondary rounded-lg overflow-hidden">
+          <div className="relative max-w-4xl w-full bg-secondary rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setSelectedKeyboard(null)}
-              className="absolute top-4 right-4 text-foreground hover:text-accent text-2xl z-10"
+              className="absolute top-4 right-4 text-foreground hover:text-accent text-2xl z-10 bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"
+              aria-label="Close"
             >
               ✕
             </button>
-            <div className="w-full h-64 md:h-96 bg-tertiary overflow-hidden">
-              <img 
-                src={selectedKeyboardData.image} 
-                alt={selectedKeyboardData.name}
-                className="w-full h-full object-cover"
-              />
+            
+            {/* Image Carousel */}
+            <div className="relative w-full h-64 md:h-96 bg-tertiary overflow-hidden">
+              {selectedKeyboardImages.length > 0 ? (
+                <>
+                  {/* Main Image */}
+                  <img 
+                    key={currentImageIndex}
+                    src={selectedKeyboardImages[currentImageIndex]?.src} 
+                    alt={selectedKeyboardImages[currentImageIndex]?.alt}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Navigation arrows - only show if multiple images */}
+                  {selectedKeyboardImages.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-accent text-4xl font-bold z-10 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full"
+                        aria-label="Previous image"
+                      >
+                        ‹
+                      </button>
+                      
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-accent text-4xl font-bold z-10 w-12 h-12 flex items-center justify-center bg-black/50 rounded-full"
+                        aria-label="Next image"
+                      >
+                        ›
+                      </button>
+                      
+                      {/* Image counter */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-3 py-1 rounded-full text-sm">
+                        {currentImageIndex + 1} / {selectedKeyboardImages.length}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                // Fallback to placeholder image
+                <img 
+                  src={selectedKeyboardData.image} 
+                  alt={selectedKeyboardData.name}
+                  className="w-full h-full object-cover"
+                />
+              )}
             </div>
+            
             <div className="p-6 space-y-4">
               <div>
                 <h2 className="text-2xl font-bold text-foreground">{selectedKeyboardData.name}</h2>
