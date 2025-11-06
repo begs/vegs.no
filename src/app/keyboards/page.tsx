@@ -189,6 +189,20 @@ export default function Keyboards() {
     );
   }, [selectedKeyboardImages.length]);
 
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (selectedKeyboard) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedKeyboard]);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
