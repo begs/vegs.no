@@ -136,7 +136,7 @@ export default function About() {
               </a>
               
               <a
-                href="mailto:hello@vegs.no"
+                href="mailto:vegv@proton.me"
                 className="flex items-center space-x-2 px-4 py-2 bg-accent hover:bg-accent-purple rounded-lg transition-colors text-background"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
