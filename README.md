@@ -18,7 +18,7 @@ A minimal personal website built with Next.js and styled with the Tokyo Night co
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 - **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Deployment:** Ready for Vercel, Netlify, or similar platforms
+- **Deployment:** [Vercel](https://vercel.com/)
 
 ## Getting Started
 
