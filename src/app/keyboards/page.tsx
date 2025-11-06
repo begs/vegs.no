@@ -15,7 +15,7 @@ const mockKeyboards = [
     case: "Aluminum",
     plate: "POM",
     description: "A prototype of an Alice-inspired keyboard by Mekanisk/Snurrebassen.",
-    image: "https://live.staticflickr.com/65535/50583082332_0360c8d777_b.jpg",
+    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26?text=Elise",
     tags: ["Alice", "mx"]
   },
   {
@@ -27,7 +27,7 @@ const mockKeyboards = [
     case: "Aluminum",
     plate: "POM",
     description: "A clone of the classic OTD 360C.",
-    image: "https://live.staticflickr.com/65535/51352150983_c510c731ce_b.jpg",
+    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26?text=UTD+360C",
     tags: ["TKL", "mx"]
   },
   {
@@ -189,20 +189,6 @@ export default function Keyboards() {
     );
   }, [selectedKeyboardImages.length]);
 
-  // Prevent body scroll when modal is open
-  useEffect(() => {
-    if (selectedKeyboard) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedKeyboard]);
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
@@ -343,10 +329,10 @@ export default function Keyboards() {
       {/* Keyboard Detail Modal */}
       {selectedKeyboardData && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 overflow-y-auto"
           onClick={() => setSelectedKeyboard(null)}
         >
-          <div className="relative max-w-4xl w-full bg-secondary rounded-lg overflow-hidden" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-4xl w-full bg-secondary rounded-lg overflow-hidden my-8" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setSelectedKeyboard(null)}
               className="absolute top-4 right-4 text-foreground hover:text-accent text-2xl z-10 bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"
