@@ -13,20 +13,22 @@ const mockKeyboards = [
     switches: "Crinks",
     keycaps: "keyreative ABS blanks",
     case: "Aluminum",
+    plate: "POM",
     description: "An Alice-inspired keyboard by Mekanisk/Snurrebassen.",
     image: "https://live.staticflickr.com/65535/50583082332_0360c8d777_b.jpg",
-    tags: ["Alice"]
+    tags: ["Alice", "mx"]
   },
   {
     id: 2,
     name: "UTD 360C",
     category: "TKL",
-    switches: "Pewters",
+    switches: "JWK Pewters",
     keycaps: "Cherry PBT Dyesub",
     case: "Aluminum",
+    plate: "POM",
     description: "A clone of the classic OTD 360C.",
     image: "https://live.staticflickr.com/65535/51352150983_c510c731ce_b.jpg",
-    tags: ["JWK", "TKL"]
+    tags: ["TKL", "mx"]
   },
   {
     id: 3,
@@ -35,6 +37,7 @@ const mockKeyboards = [
     switches: "Topre 45g",
     keycaps: "PBT Dyesub",
     case: "ABS",
+    plate: "Integrated",
     description: "The original HHKB Pro, manufactured in 2005.",
     image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
     tags: ["topre", "60%"]
@@ -46,9 +49,10 @@ const mockKeyboards = [
     switches: "Cherry MX Brown",
     keycaps: "GMK WoB",
     case: "Aluminum",
+    plate: "Aluminum",
     description: "Tray mount 60% with gummy o-ring, made by TGR & Singa. Built with Cherry MX Browns from 1997.",
     image: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
-    tags: ["cherry", "60%"]
+    tags: ["mx", "60%"]
   },
   {
     id: 5,
@@ -57,9 +61,10 @@ const mockKeyboards = [
     switches: "Cherry MX Black",
     keycaps: "-",
     case: "Aluminum",
+    plate: "Aluminum",
     description: "TGR 910-style 65% with top- or o-ring mount options. By Hands Engineering.",
     image: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
-    tags: ["cherry", "65%"]
+    tags: ["mx", "65%"]
   },
   {
     id: 6,
@@ -68,6 +73,7 @@ const mockKeyboards = [
     switches: "Topre 45g",
     keycaps: "PBT Dyesub",
     case: "ABS",
+    plate: "Integrated",
     description: "HHKB Hybrid from 2020-07. Daily driver!",
     image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
     tags: ["topre", "60%"]
@@ -79,6 +85,7 @@ const mockKeyboards = [
     switches: "Topre 45g",
     keycaps: "PBT Dyesub",
     case: "ABS",
+    plate: "Integrated",
     description: "HHKB Hybrid from 2020-02, with domes from a 2017 HHKB BT. Daily driver number two!",
     image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
     tags: ["topre", "60%"]
@@ -90,14 +97,15 @@ const mockKeyboards = [
     switches: "N/A",
     keycaps: "N/A",
     case: "Aluminum",
+    plate: "Aluminum",
     description: "Classic TKL by Plywrks.",
     image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
     tags: ["TKL"]
   },
 ];
 
-const categories = ["all", "40%", "60%", "65%", "75%", "TKL", "full-size"];
-const switchTypes = ["all", "topre", "cherry", "gateron", "zealios"];
+const categories = ["all", "60%", "65%", "TKL", "Alice"];
+const switchTypes = ["all", "topre", "mx"];
 
 export default function Keyboards() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -215,6 +223,10 @@ export default function Keyboards() {
                       <span className="text-muted">Case:</span>
                       <span className="ml-1 text-accent">{keyboard.case}</span>
                     </div>
+                    <div>
+                      <span className="text-muted">Plate:</span>
+                      <span className="ml-1 text-accent">{keyboard.plate}</span>
+                    </div>
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {keyboard.tags.map((tag) => (
@@ -253,17 +265,12 @@ export default function Keyboards() {
             >
               ✕
             </button>
-            <div className="aspect-w-16 aspect-h-10 bg-tertiary">
-              <div className="w-full h-64 bg-tertiary flex items-center justify-center">
-                <div className="text-center text-muted">
-                  <div className="w-20 h-20 mx-auto mb-4 opacity-50">
-                    <svg fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm3 3h2v2h-2v-2zm0 3h2v2h-2v-2zm0 3h2v2h-2v-2zm7-6h2v2h-2v-2zm0-3h2v2h-2V8zm0 6h2v2h-2v-2z"/>
-                    </svg>
-                  </div>
-                  <p>{selectedKeyboardData.name}</p>
-                </div>
-              </div>
+            <div className="w-full h-64 md:h-96 bg-tertiary overflow-hidden">
+              <img 
+                src={selectedKeyboardData.image} 
+                alt={selectedKeyboardData.name}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-6 space-y-4">
               <div>
@@ -279,6 +286,10 @@ export default function Keyboards() {
                   <div>
                     <span className="text-sm text-muted">Switches:</span>
                     <p className="text-accent font-medium">{selectedKeyboardData.switches}</p>
+                  </div>
+                  <div>
+                    <span className="text-sm text-muted">Plate Material:</span>
+                    <p className="text-accent font-medium">{selectedKeyboardData.plate}</p>
                   </div>
                 </div>
                 <div className="space-y-2">
