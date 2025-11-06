@@ -14,7 +14,7 @@ const mockKeyboards = [
     keycaps: "keyreative ABS blanks",
     case: "Aluminum",
     description: "An Alice-inspired keyboard by Mekanisk/Snurrebassen.",
-    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
+    image: "https://live.staticflickr.com/65535/50583082332_0360c8d777_b.jpg",
     tags: ["Alice"]
   },
   {
@@ -25,7 +25,7 @@ const mockKeyboards = [
     keycaps: "Cherry PBT Dyesub",
     case: "Aluminum",
     description: "A clone of the classic OTD 360C.",
-    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
+    image: "https://live.staticflickr.com/65535/51352150983_c510c731ce_b.jpg",
     tags: ["JWK", "TKL"]
   },
   {
