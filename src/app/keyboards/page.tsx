@@ -254,7 +254,14 @@ export default function Keyboards() {
 
           {/* Keyboard Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredKeyboards.map((keyboard) => (
+            {filteredKeyboards.map((keyboard) => {
+              // Get first image from Cloudinary or fallback to placeholder
+              const keyboardImageList = keyboardImages[keyboard.name] || [];
+              const previewImage = keyboardImageList.length > 0 
+                ? keyboardImageList[0].src 
+                : keyboard.image;
+              
+              return (
               <div
                 key={keyboard.id}
                 className="bg-secondary rounded-lg overflow-hidden hover:bg-tertiary/20 transition-colors cursor-pointer"
@@ -262,7 +269,7 @@ export default function Keyboards() {
               >
                 <div className="w-full h-48 bg-tertiary overflow-hidden">
                   <img 
-                    src={keyboard.image} 
+                    src={previewImage} 
                     alt={keyboard.name}
                     className="w-full h-full object-cover"
                   />
@@ -306,7 +313,8 @@ export default function Keyboards() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
 
           {filteredKeyboards.length === 0 && (

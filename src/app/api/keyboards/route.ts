@@ -29,6 +29,17 @@ export async function GET(request: Request) {
 
     console.log('Total images fetched from Cloudinary:', result.resources.length);
 
+    // Debug: Show first few resources
+    if (result.resources.length > 0) {
+      console.log('Sample keyboard images:');
+      result.resources.slice(0, 5).forEach((r: any) => {
+        console.log({
+          public_id: r.public_id,
+          asset_folder: r.asset_folder,
+        });
+      });
+    }
+
     // Group images by keyboard folder
     const keyboardImages: Record<string, any[]> = {};
 
@@ -42,6 +53,8 @@ export async function GET(request: Request) {
         const keyboardName = assetFolder.startsWith('keyboards/')
           ? assetFolder.substring(10) // Remove "keyboards/" prefix
           : 'unknown';
+
+        console.log(`Mapping: "${assetFolder}" -> "${keyboardName}"`);
 
         if (!keyboardImages[keyboardName]) {
           keyboardImages[keyboardName] = [];
