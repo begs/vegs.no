@@ -114,6 +114,8 @@ export default function Keyboards() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [keyboardImages, setKeyboardImages] = useState<Record<string, any[]>>({});
   const [loadingImages, setLoadingImages] = useState(true);
+  const [imageLoading, setImageLoading] = useState<Record<number, boolean>>({});
+  const [modalImageLoading, setModalImageLoading] = useState(false);
 
   // Fetch keyboard images from Cloudinary
   useEffect(() => {
@@ -267,11 +269,19 @@ export default function Keyboards() {
                 className="bg-secondary rounded-lg overflow-hidden hover:bg-tertiary/20 transition-colors cursor-pointer"
                 onClick={() => setSelectedKeyboard(keyboard.id)}
               >
-                <div className="w-full h-48 bg-tertiary overflow-hidden">
+                <div className="w-full h-48 bg-tertiary overflow-hidden relative">
+                  {imageLoading[keyboard.id] && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-2 border-accent border-t-transparent"></div>
+                    </div>
+                  )}
                   <img 
                     src={previewImage} 
                     alt={keyboard.name}
                     className="w-full h-full object-cover"
+                    onLoadStart={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: true }))}
+                    onLoad={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
+                    onError={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
                   />
                 </div>
                 <div className="p-4 space-y-3">
@@ -345,12 +355,22 @@ export default function Keyboards() {
             <div className="relative w-full h-64 md:h-96 bg-tertiary overflow-hidden">
               {selectedKeyboardImages.length > 0 ? (
                 <>
+                  {/* Loading spinner */}
+                  {modalImageLoading && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <div className="animate-spin rounded-full h-12 w-12 border-4 border-accent border-t-transparent"></div>
+                    </div>
+                  )}
+                  
                   {/* Main Image */}
                   <img 
                     key={currentImageIndex}
                     src={selectedKeyboardImages[currentImageIndex]?.src} 
                     alt={selectedKeyboardImages[currentImageIndex]?.alt}
                     className="w-full h-full object-cover"
+                    onLoadStart={() => setModalImageLoading(true)}
+                    onLoad={() => setModalImageLoading(false)}
+                    onError={() => setModalImageLoading(false)}
                   />
                   
                   {/* Navigation arrows - only show if multiple images */}
