@@ -47,7 +47,7 @@ const mockKeyboards = [
     keycaps: "GMK WoB",
     case: "Aluminum",
     description: "Tray mount 60% with gummy o-ring, made by TGR & Singa. Built with Cherry MX Browns from 1997.",
-    image18: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
+    image: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
     tags: ["cherry", "60%"]
   },
   {
@@ -186,17 +186,12 @@ export default function Keyboards() {
                 className="bg-secondary rounded-lg overflow-hidden hover:bg-tertiary/20 transition-colors cursor-pointer"
                 onClick={() => setSelectedKeyboard(keyboard.id)}
               >
-                <div className="aspect-w-16 aspect-h-10 bg-tertiary">
-                  <div className="w-full h-48 bg-tertiary flex items-center justify-center">
-                    <div className="text-center text-muted">
-                      <div className="w-16 h-16 mx-auto mb-2 opacity-50">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm3 3h2v2h-2v-2zm0 3h2v2h-2v-2zm0 3h2v2h-2v-2zm7-6h2v2h-2v-2zm0-3h2v2h-2V8zm0 6h2v2h-2v-2z"/>
-                        </svg>
-                      </div>
-                      <p className="text-sm">{keyboard.name}</p>
-                    </div>
-                  </div>
+                <div className="w-full h-48 bg-tertiary overflow-hidden">
+                  <img 
+                    src={keyboard.image} 
+                    alt={keyboard.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="p-4 space-y-3">
                   <div>
