@@ -8,47 +8,58 @@ import { motion } from "framer-motion";
 const mockKeyboards = [
   {
     id: 1,
-    name: "HHKB Pro 2",
+    name: "HHKB Pro 1",
     category: "60%",
     switches: "Topre 45g",
     keycaps: "PBT Dyesub",
-    case: "Black Plastic",
+    case: "ABS",
     description: "The classic Topre experience with minimal layout.",
     image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
-    tags: ["topre", "60%", "minimal"]
+    tags: ["topre", "60%"]
   },
   {
     id: 2,
-    name: "Custom 75% Build",
-    category: "75%",
-    switches: "Cherry MX Brown",
-    keycaps: "GMK Olivia",
-    case: "Aluminum",
-    description: "Custom built 75% with premium components and beautiful keycaps.",
+    name: "HHKB Pro Hybrid Type-S (Black)",
+    category: "60%",
+    switches: "Topre 45g",
+    keycaps: "PBT Dyesub",
+    case: "ABS",
+    description: "Daily driver!",
     image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
-    tags: ["cherry", "75%", "custom"]
+    tags: ["topre", "60%"]
   },
   {
     id: 3,
-    name: "Leopold FC660M",
-    category: "65%",
-    switches: "Cherry MX Blue",
-    keycaps: "PBT Double-shot",
-    case: "Plastic",
-    description: "Compact layout with arrow keys, perfect for programming.",
-    image: "https://via.placeholder.com/400x250/73daca/1a1b26",
-    tags: ["cherry", "65%", "clicky"]
+    name: "HHKB Pro Hybrid Type-S (Beige)",
+    category: "60%",
+    switches: "Topre 45g",
+    keycaps: "PBT Dyesub",
+    case: "ABS",
+    description: "Daily driver number two!",
+    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
+    tags: ["topre", "60%"]
   },
   {
     id: 4,
-    name: "Planck Ortholinear",
-    category: "40%",
-    switches: "Gateron Yellow",
-    keycaps: "XDA Profile",
+    name: "TGR/Singa Unikorn",
+    category: "60%",
+    switches: "Cherry MX Brown",
+    keycaps: "GMK WoB",
     case: "Aluminum",
-    description: "Ortholinear layout for efficient typing and customization.",
+    description: "Tray mount 60% with gummy o-ring",
+    image18: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
+    tags: ["cherry", "60%"]
+  },
+  {
+    id: 5,
+    name: "Hands Engineering Haus",
+    category: "65%",
+    switches: "Cherry MX Black",
+    keycaps: "-",
+    case: "Aluminum",
+    description: "TGR 910-style 65% with top- or o-ring mount options",
     image: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
-    tags: ["gateron", "40%", "ortholinear"]
+    tags: ["cherry", "65%"]
   }
 ];
 
