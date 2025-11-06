@@ -157,6 +157,7 @@ export default function Keyboards() {
   // Reset image index when keyboard changes
   useEffect(() => {
     setCurrentImageIndex(0);
+    setModalImageLoading(true); // Start loading when modal opens
   }, [selectedKeyboard]);
 
   // Keyboard navigation for carousel
@@ -182,10 +183,12 @@ export default function Keyboards() {
   }, [selectedKeyboard, selectedKeyboardImages.length]);
 
   const handleNextImage = useCallback(() => {
+    setModalImageLoading(true);
     setCurrentImageIndex((prev) => (prev + 1) % selectedKeyboardImages.length);
   }, [selectedKeyboardImages.length]);
 
   const handlePrevImage = useCallback(() => {
+    setModalImageLoading(true);
     setCurrentImageIndex((prev) => 
       prev === 0 ? selectedKeyboardImages.length - 1 : prev - 1
     );
@@ -270,8 +273,8 @@ export default function Keyboards() {
                 onClick={() => setSelectedKeyboard(keyboard.id)}
               >
                 <div className="w-full h-48 bg-tertiary overflow-hidden relative">
-                  {imageLoading[keyboard.id] && (
-                    <div className="absolute inset-0 flex items-center justify-center">
+                  {imageLoading[keyboard.id] !== false && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-tertiary">
                       <div className="animate-spin rounded-full h-8 w-8 border-2 border-accent border-t-transparent"></div>
                     </div>
                   )}
@@ -279,7 +282,6 @@ export default function Keyboards() {
                     src={previewImage} 
                     alt={keyboard.name}
                     className="w-full h-full object-cover"
-                    onLoadStart={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: true }))}
                     onLoad={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
                     onError={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
                   />
@@ -368,7 +370,6 @@ export default function Keyboards() {
                     src={selectedKeyboardImages[currentImageIndex]?.src} 
                     alt={selectedKeyboardImages[currentImageIndex]?.alt}
                     className="w-full h-full object-cover"
-                    onLoadStart={() => setModalImageLoading(true)}
                     onLoad={() => setModalImageLoading(false)}
                     onError={() => setModalImageLoading(false)}
                   />
