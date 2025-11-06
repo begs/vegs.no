@@ -8,59 +8,92 @@ import { motion } from "framer-motion";
 const mockKeyboards = [
   {
     id: 1,
+    name: "Elise",
+    category: "Alice",
+    switches: "Crinks",
+    keycaps: "keyreative ABS blanks",
+    case: "Aluminum",
+    description: "An Alice-inspired keyboard by Mekanisk/Snurrebassen.",
+    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
+    tags: ["Alice"]
+  },
+  {
+    id: 2,
+    name: "UTD 360C",
+    category: "TKL",
+    switches: "Pewters",
+    keycaps: "Cherry PBT Dyesub",
+    case: "Aluminum",
+    description: "A clone of the classic OTD 360C.",
+    image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
+    tags: ["JWK", "TKL"]
+  },
+  {
+    id: 3,
     name: "HHKB Pro 1",
     category: "60%",
     switches: "Topre 45g",
     keycaps: "PBT Dyesub",
     case: "ABS",
-    description: "The classic Topre experience with minimal layout.",
+    description: "The original HHKB Pro, manufactured in 2005.",
     image: "https://via.placeholder.com/400x250/7aa2f7/1a1b26",
     tags: ["topre", "60%"]
   },
   {
-    id: 2,
-    name: "HHKB Pro Hybrid Type-S (Black)",
-    category: "60%",
-    switches: "Topre 45g",
-    keycaps: "PBT Dyesub",
-    case: "ABS",
-    description: "Daily driver!",
-    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
-    tags: ["topre", "60%"]
-  },
-  {
-    id: 3,
-    name: "HHKB Pro Hybrid Type-S (Beige)",
-    category: "60%",
-    switches: "Topre 45g",
-    keycaps: "PBT Dyesub",
-    case: "ABS",
-    description: "Daily driver number two!",
-    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
-    tags: ["topre", "60%"]
-  },
-  {
     id: 4,
-    name: "TGR/Singa Unikorn",
+    name: "Unikorn SE/EE",
     category: "60%",
     switches: "Cherry MX Brown",
     keycaps: "GMK WoB",
     case: "Aluminum",
-    description: "Tray mount 60% with gummy o-ring",
+    description: "Tray mount 60% with gummy o-ring, made by TGR & Singa. Built with Cherry MX Browns from 1997.",
     image18: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
     tags: ["cherry", "60%"]
   },
   {
     id: 5,
-    name: "Hands Engineering Haus",
+    name: "Haus",
     category: "65%",
     switches: "Cherry MX Black",
     keycaps: "-",
     case: "Aluminum",
-    description: "TGR 910-style 65% with top- or o-ring mount options",
+    description: "TGR 910-style 65% with top- or o-ring mount options. By Hands Engineering.",
     image: "https://via.placeholder.com/400x250/9ece6a/1a1b26",
     tags: ["cherry", "65%"]
-  }
+  },
+  {
+    id: 6,
+    name: "HHKB Pro Hybrid Type-S (Black)",
+    category: "60%",
+    switches: "Topre 45g",
+    keycaps: "PBT Dyesub",
+    case: "ABS",
+    description: "HHKB Hybrid from 2020-07. Daily driver!",
+    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
+    tags: ["topre", "60%"]
+  },
+  {
+    id: 7,
+    name: "HHKB Pro Hybrid Type-S (Beige)",
+    category: "60%",
+    switches: "Topre 45g",
+    keycaps: "PBT Dyesub",
+    case: "ABS",
+    description: "HHKB Hybrid from 2020-02, with domes from a 2017 HHKB BT. Daily driver number two!",
+    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
+    tags: ["topre", "60%"]
+  },
+  {
+    id: 8,
+    name: "Spyder",
+    category: "TKL",
+    switches: "N/A",
+    keycaps: "N/A",
+    case: "Aluminum",
+    description: "Classic TKL by Plywrks.",
+    image: "https://via.placeholder.com/400x250/bb9af7/1a1b26",
+    tags: ["TKL"]
+  },
 ];
 
 const categories = ["all", "40%", "60%", "65%", "75%", "TKL", "full-size"];
