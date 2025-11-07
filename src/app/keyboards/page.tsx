@@ -194,6 +194,46 @@ export default function Keyboards() {
     );
   }, [selectedKeyboardImages.length]);
 
+  // Touch/swipe support for mobile
+  useEffect(() => {
+    if (!selectedKeyboard || selectedKeyboardImages.length === 0) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const swipeThreshold = 50; // Minimum distance for a swipe
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swiped left - next image
+          handleNextImage();
+        } else {
+          // Swiped right - previous image
+          handlePrevImage();
+        }
+      }
+    };
+
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [selectedKeyboard, selectedKeyboardImages.length, handleNextImage, handlePrevImage]);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
