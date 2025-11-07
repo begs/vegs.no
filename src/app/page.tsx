@@ -21,7 +21,7 @@ export default function Home() {
               Vegard
             </h1>
             <p className="text-xl md:text-2xl text-muted max-w-2xl mx-auto">
-              Developer, photographer, and keyboard enthusiast
+              Hi!
             </p>
           </motion.div>
 

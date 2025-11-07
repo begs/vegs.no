@@ -47,29 +47,7 @@ export default function About() {
               
               <div className="space-y-4 text-foreground leading-relaxed">
                 <p>
-                  I'm Vegard, a developer passionate about creating digital experiences and capturing 
-                  moments through photography. When I'm not coding, you'll often find me exploring 
-                  new places with my camera or tinkering with mechanical keyboards.
-                </p>
-                
-                <p>
-                  My journey in technology has led me through various projects and technologies, 
-                  always with a focus on clean, efficient solutions. I believe in the power of 
-                  good design and user experience to make technology more accessible and enjoyable.
-                </p>
-                
-                <p>
-                  Photography serves as my creative outlet, allowing me to see the world from 
-                  different perspectives and share those moments with others. Whether it's 
-                  landscape photography during travels or street photography in everyday life, 
-                  I'm always looking for that perfect shot.
-                </p>
-                
-                <p>
-                  As for keyboards – what started as a practical need became a full-blown hobby. 
-                  There's something satisfying about the tactile feedback of a well-built mechanical 
-                  keyboard, and I enjoy customizing them to match both aesthetic preferences and 
-                  typing needs.
+                    Hi!
                 </p>
               </div>
             </div>
