@@ -33,7 +33,7 @@ export default function About() {
                 About Me
               </h1>
               <p className="text-xl text-muted max-w-2xl mx-auto">
-                Developer, photographer, and mechanical keyboard enthusiast based in Norway.
+                🌊
               </p>
             </div>
           </div>
