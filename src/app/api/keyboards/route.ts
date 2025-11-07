@@ -60,8 +60,12 @@ export async function GET(request: Request) {
           keyboardImages[keyboardName] = [];
         }
 
+        // Generate optimized thumbnail URL for grid preview
+        const thumbnailUrl = resource.secure_url.replace('/upload/', '/upload/w_400,h_300,c_fill,q_auto,f_auto/');
+
         keyboardImages[keyboardName].push({
-          src: resource.secure_url,
+          src: resource.secure_url, // Full size for carousel
+          thumbnail: thumbnailUrl, // Optimized for grid preview
           alt: resource.context?.custom?.alt || resource.public_id,
           width: resource.width,
           height: resource.height,

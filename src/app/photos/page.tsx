@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 interface Photo {
   id: number;
   src: string;
+  thumbnail?: string;
   alt: string;
   tags: string[];
   width?: number;
@@ -205,9 +206,10 @@ export default function Photos() {
               >
                   <div className="w-full h-64 bg-tertiary relative">
                     <img 
-                      src={photo.src} 
+                      src={photo.thumbnail || photo.src}
                       alt={photo.alt}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                       onError={(e) => {
                         // Fallback if image fails to load
                         e.currentTarget.style.display = 'none';

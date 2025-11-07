@@ -53,9 +53,13 @@ export async function GET(request: Request) {
         // Get alt text from context or filename
         const alt = resource.context?.custom?.alt || resource.public_id;
 
+        // Generate optimized thumbnail URL for grid view (400x300, quality auto)
+        const thumbnailUrl = resource.secure_url.replace('/upload/', '/upload/w_400,h_300,c_fill,q_auto,f_auto/');
+
         return {
           id: index + 1,
-          src: resource.secure_url,
+          src: resource.secure_url, // Full size for lightbox
+          thumbnail: thumbnailUrl, // Optimized for grid
           alt: alt,
           tags: [folderName], // Single folder name as the only tag
           width: resource.width,

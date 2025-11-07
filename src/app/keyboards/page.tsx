@@ -303,7 +303,7 @@ export default function Keyboards() {
               // Get first image from Cloudinary or fallback to placeholder
               const keyboardImageList = keyboardImages[keyboard.name] || [];
               const previewImage = keyboardImageList.length > 0 
-                ? keyboardImageList[0].src 
+                ? (keyboardImageList[0].thumbnail || keyboardImageList[0].src)
                 : keyboard.image;
               
               return (
@@ -322,6 +322,7 @@ export default function Keyboards() {
                     src={previewImage} 
                     alt={keyboard.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                     onLoad={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
                     onError={() => setImageLoading(prev => ({ ...prev, [keyboard.id]: false }))}
                   />
