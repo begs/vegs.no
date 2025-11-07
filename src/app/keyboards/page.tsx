@@ -382,10 +382,10 @@ export default function Keyboards() {
       {/* Keyboard Detail Modal */}
       {selectedKeyboardData && (
         <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 overflow-y-auto"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 md:p-8 overflow-y-auto"
           onClick={() => setSelectedKeyboard(null)}
         >
-          <div className="relative max-w-4xl w-full bg-secondary rounded-lg overflow-hidden my-8" onClick={(e) => e.stopPropagation()}>
+          <div className="relative max-w-6xl w-full bg-secondary rounded-lg overflow-hidden my-8" onClick={(e) => e.stopPropagation()}>
             <button
               onClick={() => setSelectedKeyboard(null)}
               className="absolute top-4 right-4 text-foreground hover:text-accent text-2xl z-10 bg-black/50 rounded-full w-10 h-10 flex items-center justify-center"
@@ -395,7 +395,7 @@ export default function Keyboards() {
             </button>
             
             {/* Image Carousel */}
-            <div className="relative w-full h-64 md:h-96 bg-tertiary overflow-hidden">
+            <div className="relative w-full h-64 md:h-[32rem] lg:h-[40rem] bg-tertiary overflow-hidden">
               {selectedKeyboardImages.length > 0 ? (
                 <>
                   {/* Loading spinner */}

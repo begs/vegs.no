@@ -246,10 +246,10 @@ export default function Photos() {
       {/* Lightbox Modal */}
       {selectedPhoto && (
         <div
-          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 md:p-8"
           onClick={() => setSelectedPhoto(null)}
         >
-          <div className="relative max-w-6xl w-full h-full flex items-center justify-center">
+          <div className="relative max-w-7xl w-full h-full flex items-center justify-center">
             {/* Close button */}
             <button
               onClick={() => setSelectedPhoto(null)}
