@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/linni",
-        destination: "https://nrk.no",
+        destination: "https://www.youtube.com/watch?v=jtMHsNhQBvI",
         permanent: true,
       },
     ];
